@@ -37,6 +37,12 @@ import pkg from './package.json';
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
+gulp.task('test',()=>{
+  gulp.src(['app/scripts/**/*.js','!node_modules/**'],{base:'app'})
+    .pipe($.uglify({preserveComments: 'some'}))
+    .pipe(gulp.dest('test'))
+});
+
 // Lint JavaScript
 gulp.task('lint', () =>
   gulp.src(['app/scripts/**/*.js','!node_modules/**'])
@@ -176,7 +182,7 @@ gulp.task('serve', ['scripts', 'styles'], () => {
 });
 
 // Build and serve the output from the dist build
-gulp.task('serve:dist', ['default'], () =>
+gulp.task('serve:dist', ['default'], () => {
   browserSync({
     notify: false,
     logPrefix: 'WSK',
@@ -188,8 +194,12 @@ gulp.task('serve:dist', ['default'], () =>
     // https: true,
     server: 'dist',
     port: 3001
-  })
-);
+  });
+  gulp.watch(['dist/**/*.html'], reload);
+  gulp.watch(['dist/styles/**/*.{scss,css}'], ['styles', reload]);
+  gulp.watch(['dist/scripts/**/*.js'], ['lint', 'scripts', reload]);
+  gulp.watch(['dist/images/**/*'], reload);
+});
 
 // Build production files, the default task
 gulp.task('default', ['clean'], cb =>
