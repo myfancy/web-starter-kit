@@ -79,3 +79,12 @@ A [package.json](https://docs.npmjs.com/files/package.json) file is used to spec
 A [service worker](http://www.html5rocks.com/en/tutorials/service-worker/introduction/) is a script that is run by your browser in the background, separate from a web page, opening the door to features such as offline support. In Web Starter Kit, the `app/service-worker.js` script is automatically generated for you by our build process via [sw-precache](https://github.com/GoogleChrome/sw-precache/).
 
 一个service worker是一个在你的浏览器后台运行的脚本，独立于网站页面，打开特征的大门，如离线支持。在Web Starter Kit，app/service-worker.js 脚本是为你自动加载的，通过我们构建的工程通过[sw-precache](https://github.com/GoogleChrome/sw-precache/)。
+
+
+## .travis.yml
+
+这点是我自己加的，它原来没有解释。
+.travis.yml是一个叫做travis的工具的配置文件。
+travis如果用不到，暂时不需要了解，下面是之前搜到的一个相关链接：
+http://www.2cto.com/kf/201411/356826.html
+感兴趣就看看。
